@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#E50914" />
+  <title>FluxusTV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#/" class="nav-logo">
+        <svg class="nav-logo-icon" viewBox="0 0 40 56" fill="none">
+          <rect width="40" height="56" rx="4" fill="#E50914"/>
+          <path d="M8 8 L8 48 L16 48 L16 32 L24 48 L32 48 L32 8 L24 8 L24 24 L16 8 Z" fill="white"/>
+        </svg>
+        <span class="nav-logo-text">FluxusTV</span>
+      </a>
+      <div class="nav-links" id="nav-links">
+        <a href="#/" class="nav-link" id="nav-home">Home</a>
+        <a href="#/browse/popular-movies" class="nav-link">Movies</a>
+        <a href="#/browse/popular-tv" class="nav-link">TV Shows</a>
+        <a href="#/browse/trending-today" class="nav-link">New &amp; Popular</a>
+      </div>
+      <div class="nav-right">
+        <button class="nav-search-btn" id="nav-search-toggle" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+        </button>
+        <div class="nav-search-bar" id="nav-search-bar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input id="nav-search-input" type="search" placeholder="Titles, people, genres" autocomplete="off" />
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== VIEW: HOME ===== -->
+  <div id="view-home" class="view">
+
+    <!-- Hero Banner -->
+    <div id="hero" class="hero">
+      <div class="hero-bg">
+        <img id="hero-img" src="" alt="" />
+        <div class="hero-gradient-left"></div>
+        <div class="hero-gradient-bottom"></div>
+      </div>
+      <div class="hero-content">
+        <div id="hero-badge" class="hero-badge"></div>
+        <h1 id="hero-title" class="hero-title"></h1>
+        <p id="hero-overview" class="hero-overview"></p>
+        <div class="hero-meta" id="hero-meta"></div>
+        <div class="hero-buttons">
+          <button class="btn-play" id="hero-play-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            Play
+          </button>
+          <button class="btn-info" id="hero-info-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            More Info
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Carousels -->
+    <div class="carousels-wrap" id="carousels-wrap">
+      <!-- Injected by JS -->
+    </div>
+
+  </div>
+
+  <!-- ===== VIEW: SEARCH ===== -->
+  <div id="view-search" class="view hidden">
+    <div class="search-page">
+      <div id="search-results-count" class="search-results-count"></div>
+      <div id="search-results-grid" class="search-results-grid"></div>
+      <div id="search-load-more-wrap" class="load-more-wrap hidden">
+        <button id="search-load-more-btn" class="btn-load-more">Load More</button>
+      </div>
+      <div id="search-state-loading" class="search-state hidden">
+        <div class="spinner"></div><p>Searching…</p>
+      </div>
+      <div id="search-state-empty" class="search-state hidden">
+        <p class="search-empty-icon">🎬</p>
+        <p>No results found. Try a different title.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== VIEW: PLAYER ===== -->
+  <div id="view-player" class="view hidden">
+    <div class="player-page">
+
+      <!-- Backdrop -->
+      <div class="player-backdrop">
+        <img id="player-backdrop-img" src="" alt="" />
+        <div class="player-backdrop-overlay"></div>
+      </div>
+
+      <div class="player-page-inner">
+        <!-- Back -->
+        <button class="player-back-btn" id="player-back-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          Back
+        </button>
+
+        <!-- Banners -->
+        <div id="player-ublock-banner" class="player-banner player-banner-warn hidden">
+          <span>⚠️ For best experience, use <a href="https://brave.com/" target="_blank" rel="noopener">Brave Browser</a> or <a href="https://ublockorigin.com/" target="_blank" rel="noopener">uBlock Origin</a> to block ads.</span>
+          <button id="player-ublock-dismiss" aria-label="Dismiss">✕</button>
+        </div>
+        <div id="player-new-banner" class="player-banner player-banner-info hidden">
+          <span>🆕 <strong>Recently released</strong> — if a server doesn't load, try another.</span>
+        </div>
+
+        <!-- Main content -->
+        <div class="player-layout">
+
+          <!-- Left: info + player -->
+          <div class="player-main">
+
+            <!-- Title block -->
+            <div class="player-title-block">
+              <div class="player-badges">
+                <span id="player-type-badge" class="badge"></span>
+                <span id="player-year" class="player-year"></span>
+                <span id="player-rating" class="player-rating"></span>
+              </div>
+              <h1 id="player-title" class="player-title"></h1>
+              <div id="player-genres" class="player-genres"></div>
+              <p id="player-overview" class="player-overview"></p>
+            </div>
+
+            <!-- Server + actions row -->
+            <div class="player-controls-row">
+              <div class="server-selector-wrap">
+                <label class="server-label" for="server-select">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="5" rx="1"/><rect x="2" y="10" width="20" height="5" rx="1"/><rect x="2" y="17" width="20" height="5" rx="1"/></svg>
+                  Server
+                </label>
+                <select id="server-select" class="server-select">
+                  <option value="alpha">Alpha</option>
+                  <option value="bravo">Bravo</option>
+                  <option value="charlie">Charlie</option>
+                  <option value="delta">Delta</option>
+                  <option value="echo">Echo</option>
+                  <option value="foxtrot">Foxtrot</option>
+                  <option value="golf">Golf</option>
+                  <option value="hotel">Hotel</option>
+                  <option value="india">India</option>
+                  <option value="juliet">Juliet</option>
+                  <option value="kilo">Kilo</option>
+                  <option value="lima">Lima</option>
+                  <option value="mike">Mike</option>
+                  <option value="november" selected>November ★</option>
+                  <option value="oscar">Oscar</option>
+                  <option value="papa">Papa</option>
+                  <option value="quebec">Quebec</option>
+                  <option value="romeo">Romeo</option>
+                  <option value="sierra">Sierra</option>
+                </select>
+              </div>
+              <div class="player-action-btns">
+                <button id="btn-newtab" class="btn-action" title="Open in new tab">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </button>
+                <button id="btn-download" class="btn-action" title="Find download">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </button>
+                <button id="btn-share" class="btn-action" title="Share">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                </button>
+                <button id="btn-report" class="btn-action btn-action-warn" title="Report issue">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Player iframe -->
+            <div class="iframe-container">
+              <div id="iframe-spinner" class="iframe-spinner">
+                <div class="spinner-ring"></div>
+              </div>
+              <iframe
+                id="player-iframe"
+                allowfullscreen
+                allow="autoplay; fullscreen; picture-in-picture"
+                referrerpolicy="no-referrer"
+                title="Media Player"
+                frameborder="0"
+              ></iframe>
+            </div>
+
+            <!-- TV: Season/Episode selector -->
+            <div id="tv-section" class="tv-section hidden">
+              <div class="season-tabs-scroll">
+                <div id="season-tabs" class="season-tabs"></div>
+              </div>
+              <div id="episodes-loading" class="ep-loading hidden"><div class="spinner-ring small"></div></div>
+              <div id="episode-grid" class="episode-grid"></div>
+            </div>
+
+          </div>
+
+          <!-- Right: poster sidebar -->
+          <div class="player-sidebar">
+            <div class="player-poster-wrap">
+              <img id="player-poster" src="" alt="" class="player-poster" />
+              <div class="player-poster-gradient"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== VIEW: BROWSE ===== -->
+  <div id="view-browse" class="view hidden">
+    <div class="browse-page">
+      <div class="browse-header">
+        <h2 id="browse-title" class="browse-title"></h2>
+      </div>
+      <div id="browse-grid" class="browse-grid"></div>
+      <div id="browse-loading" class="browse-loading hidden"><div class="spinner-ring"></div></div>
+      <div id="browse-load-more-wrap" class="load-more-wrap hidden">
+        <button id="browse-load-more-btn" class="btn-load-more">Load More</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== HOVER CARD (portal) ===== -->
+  <div id="hover-card" class="hover-card hidden">
+    <div class="hover-card-thumb">
+      <img id="hc-img" src="" alt="" />
+      <div class="hover-card-overlay"></div>
+    </div>
+    <div class="hover-card-body">
+      <div class="hc-buttons">
+        <button class="hc-play-btn" id="hc-play-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <button class="hc-add-btn" id="hc-add-btn" title="More info">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <span class="hc-rating" id="hc-rating"></span>
+      </div>
+      <div class="hc-title" id="hc-title"></div>
+      <div class="hc-meta" id="hc-meta"></div>
+      <div class="hc-genres" id="hc-genres"></div>
+    </div>
+  </div>
+
+  <!-- ===== SHARE MODAL ===== -->
+  <div id="share-modal" class="modal-overlay hidden">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Share</h3>
+        <button class="modal-close" id="share-modal-close">✕</button>
+      </div>
+      <div class="modal-body">
+        <label class="modal-label">Link</label>
+        <div class="share-url-row">
+          <input id="share-url-input" class="share-url-input" readonly />
+          <button id="share-copy-btn" class="btn-copy">Copy</button>
+        </div>
+        <label class="modal-check-label">
+          <input type="checkbox" id="share-include-server" checked />
+          Include server preference
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== REPORT MODAL ===== -->
+  <div id="report-modal" class="modal-overlay hidden">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Report an Issue</h3>
+        <button class="modal-close" id="report-modal-close">✕</button>
+      </div>
+      <div class="modal-body">
+        <label class="modal-label">Description (optional)</label>
+        <textarea id="report-desc" class="report-textarea" placeholder="Describe the problem…" rows="4"></textarea>
+        <div class="modal-actions">
+          <button id="report-cancel" class="btn-modal-cancel">Cancel</button>
+          <button id="report-submit" class="btn-modal-submit">Send Report</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TOAST ===== -->
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="js/app.js"></script>
+</body>
+  </html>
